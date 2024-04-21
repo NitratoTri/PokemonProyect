@@ -1,5 +1,6 @@
 package login;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -12,6 +13,6 @@ public class loginController {
 		System.out.println("Logueado maquina");
 	}
 	public void close(ActionEvent e) {
-		System.out.println("Cerrado maquina");
+		Platform.exit();
 	}
 }
