@@ -1,4 +1,4 @@
-package login;
+package modelo;
 
 public class Pokemon {
 
