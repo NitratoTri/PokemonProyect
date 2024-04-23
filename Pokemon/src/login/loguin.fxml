@@ -17,7 +17,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#297ac6" height="519.0" layoutX="803.0" layoutY="271.0" opacity="0.44" stroke="BLACK" strokeType="INSIDE" width="323.0" />
-      <Button layoutX="816.0" layoutY="736.0" mnemonicParsing="false" onAction="#register" text="Registrar" />
+      <Button fx:id="registrarButton" layoutX="816.0" layoutY="736.0" mnemonicParsing="false" onAction="#register" text="Registrar" />
       <Button layoutX="924.0" layoutY="736.0" mnemonicParsing="false" onAction="#login" text="Iniciar Sesion" />
       <Button layoutX="1071.0" layoutY="738.0" mnemonicParsing="false" onAction="#close" text="Cerrar" />
       <Label layoutX="930.0" layoutY="394.0" text="Usuario">
@@ -28,7 +28,7 @@
          <font>
             <Font name="Arial Black" size="18.0" />
          </font></Label>
-      <PasswordField fx:id="txtUsuario" layoutX="893.0" layoutY="421.0" promptText="Usuario" />
+      <PasswordField fx:id="txtUsuario" layoutX="893.0" layoutY="421.0" onAction="#eventKey" promptText="Usuario" />
       <PasswordField fx:id="password" layoutX="890.0" layoutY="622.0" promptText="Contraseña" />
    </children>
 </AnchorPane>

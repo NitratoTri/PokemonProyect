@@ -3,10 +3,14 @@ package login;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 
 public class loginController {
+	  @FXML
+	    private Button registrarButton;
 	 @FXML
 	    private ImageView backgroundImg;
 
@@ -15,7 +19,12 @@ public class loginController {
 
 	    @FXML
 	    private PasswordField txtUsuario;
-
+	    @FXML
+		private void eventKey(KeyEvent event) {
+			if (event.getCharacter().equals(" ")) {
+				event.consume();// Detenemos el evento
+			}
+		}
 	    @FXML
 	    void close(ActionEvent event) {
 	    	Platform.exit();
