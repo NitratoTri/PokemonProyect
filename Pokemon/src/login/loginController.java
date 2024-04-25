@@ -43,6 +43,19 @@ public class loginController {
 		if(txtUsuario.getText().isEmpty()) {
 			lblError.setText("Error: Inserta nombre de usuario");
 			lblError.setVisible(true);
+		}else if(password.getText().isEmpty()) {
+			lblError.setText("Error: Inserta una contraseña");
+			lblError.setVisible(true);
+		}else {
+			String usuario= txtUsuario.getText();
+			String pass= password.getText();
+			
+			String sql= "SELECT COUNT (*)\n"
+					+"FROM ENTRENADOR\n"
+					+"WHERE  NOM_ENTRENADOR=?\n"
+					+"AND PASSWORD = ?";
+					
+			
 		}
 	}
 
