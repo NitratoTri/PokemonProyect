@@ -4,40 +4,51 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public class loginController {
+	@FXML
+    private Label lblError;
+
+	
+	@FXML
+	private Button registrarButton;
+	@FXML
+	private ImageView backgroundImg;
+
+	@FXML
+	private PasswordField password;
+
+	@FXML
+	private PasswordField txtUsuario;
+
 	  @FXML
-	    private Button registrarButton;
-	 @FXML
-	    private ImageView backgroundImg;
+	    private void onKeyTyped(KeyEvent event) {
+		  	if(txtUsuario.getText().equals(" "));
+		  	event.consume();
+	    }
 
-	    @FXML
-	    private PasswordField password;
+	@FXML
+	void close(ActionEvent event) {
+		Platform.exit();
+	}
 
-	    @FXML
-	    private PasswordField txtUsuario;
-	    @FXML
-		private void eventKey(KeyEvent event) {
-			if (event.getCharacter().equals(" ")) {
-				event.consume();// Detenemos el evento
-			}
+	@FXML
+	void login(ActionEvent event) {
+		
+		
+		if(txtUsuario.getText().isEmpty()) {
+			lblError.setText("Error: Inserta nombre de usuario");
+			lblError.setVisible(true);
 		}
-	    @FXML
-	    void close(ActionEvent event) {
-	    	Platform.exit();
-	    }
+	}
 
-	    @FXML
-	    void login(ActionEvent event) {
-	    	System.out.println("Logueado maquina");
-	    }
-
-	    @FXML
-	    void register(ActionEvent event) {
-	    	System.out.println("Registrado maquina");
-	    }
+	@FXML
+	void register(ActionEvent event) {
+		System.out.println("Registrado maquina");
+	}
 
 }
