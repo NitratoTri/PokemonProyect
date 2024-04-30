@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseConnection {
+public class DataBaseConnection {
 	public Connection dataBaseLink;
 
 public Connection getConnection() {
-	String dataBaseName = "pokemon";
+	String dataBaseName = "bd_pokemon";
 	String dataBaseUser = "root";
 	String dataBasePass= "";
 	String url= "jdbc:mysql://localhost/"+dataBaseName;

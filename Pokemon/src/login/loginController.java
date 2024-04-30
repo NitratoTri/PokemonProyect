@@ -1,5 +1,12 @@
 package login;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import crud.DataBaseConnection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,9 +60,26 @@ public class loginController {
 			String sql= "SELECT COUNT (*)\n"
 					+"FROM ENTRENADOR\n"
 					+"WHERE  NOM_ENTRENADOR=?\n"
-					+"AND PASSWORD = ?";
-					
+					+"AND PASSWORD = ?";	
 			
+		DataBaseConnection con= new DataBaseConnection();
+		
+		Connection conexion =con.getConnection();
+		
+		try {
+			PreparedStatement ps= conexion.prepareCall(sql);
+			ps.setString(1, usuario);
+			ps.setString(2, pass);
+			ResultSet rs= ps.executeQuery(sql);
+			
+			while(rs.next()) {
+				if(rs.getInt(1)==1) {
+					System.out.println("Usuario encontrado");
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		}
 	}
 
