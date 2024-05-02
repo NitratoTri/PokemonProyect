@@ -45,43 +45,43 @@ public class loginController {
 
 	@FXML
 	void login(ActionEvent event) {
-		
-		
-		if(txtUsuario.getText().isEmpty()) {
-			lblError.setText("Error: Inserta nombre de usuario");
-			lblError.setVisible(true);
-		}else if(password.getText().isEmpty()) {
-			lblError.setText("Error: Inserta una contraseña");
-			lblError.setVisible(true);
-		}else {
-			String usuario= txtUsuario.getText();
-			String pass= password.getText();
-			
-			String sql= "SELECT COUNT (*)\n"
-					+"FROM ENTRENADOR\n"
-					+"WHERE  NOM_ENTRENADOR=?\n"
-					+"AND PASSWORD = ?";	
-			
-		DataBaseConnection con= new DataBaseConnection();
-		
-		Connection conexion =con.getConnection();
-		
-		try {
-			PreparedStatement ps= conexion.prepareCall(sql);
-			ps.setString(1, usuario);
-			ps.setString(2, pass);
-			ResultSet rs= ps.executeQuery(sql);
-			
-			while(rs.next()) {
-				if(rs.getInt(1)==1) {
-					System.out.println("Usuario encontrado");
-				}
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		}
+	    if (txtUsuario.getText().isEmpty()) {
+	        lblError.setText("Error: Inserta nombre de usuario");
+	        lblError.setVisible(true);
+	    } else if (password.getText().isEmpty()) {
+	        lblError.setText("Error: Inserta una contraseña");
+	        lblError.setVisible(true);
+	    } else {
+	        String usuario = txtUsuario.getText();
+	        String pass = password.getText();
+
+	        String sql = "SELECT COUNT(*) FROM ENTRENADOR WHERE NOM_ENTRENADOR = ? AND PASSWORD = ?";
+
+	        DataBaseConnection con = new DataBaseConnection();
+
+	        try (Connection conexion = con.getConnection();
+	             PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+	            ps.setString(1, usuario);
+	            ps.setString(2, pass);
+	            ResultSet rs = ps.executeQuery();
+
+	            if (rs.next()) {
+	                int count = rs.getInt(1);
+	                if (count == 1) {
+	                    System.out.println("Inicio de sesión exitoso para el usuario: " + usuario);
+	                    // Aquí puedes redirigir al usuario a la página de inicio de la aplicación
+	                } else {
+	                    lblError.setText("Error: Usuario o contraseña incorrectos");
+	                    lblError.setVisible(true);
+	                }
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
+
 
 	@FXML
 	void register(ActionEvent event) {
